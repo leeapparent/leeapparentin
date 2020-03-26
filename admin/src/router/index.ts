@@ -12,7 +12,11 @@ const routes: RouteConfig[] = [
     component: Main,
     children: [
       { path: "/", name: "home", component: Home },
-      { path: "/courses/list", name: "course-list", component: CourseEdit }
+      {
+        path: "/courses/list",
+        name: "course-list",
+        component: CourseEdit
+      }
     ]
   }
 ];

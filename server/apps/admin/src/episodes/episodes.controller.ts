@@ -18,10 +18,7 @@ export class EpisodesController {
   option() {
     return {
       title: '表格的标题',
-      column: [
-        { prop: 'name', label: '课程名称' },
-        // { prop: 'cover', label: '课时封面图' },
-      ],
+      column: [{ prop: 'name', label: '课程名称' }],
     };
   }
 }

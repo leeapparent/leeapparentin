@@ -17,8 +17,15 @@ export class CoursesController {
   option() {
     return {
       title: '表格的标题',
+      searchMenuSpan: 8,
       column: [
-        { prop: 'name', label: '课程名称' },
+        {
+          prop: 'name',
+          label: '课程名称',
+          sortable: true,
+          search: true,
+          regex: true,
+        },
         { prop: 'cover', label: '课时封面图' },
       ],
     };

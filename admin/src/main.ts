@@ -5,7 +5,7 @@ import "./plugins/avue";
 import router from "./router";
 import axios from "axios";
 Vue.prototype.$http = axios.create({
-  baseURL: "http://localhost:3000"
+  baseURL: "http://localhost:3002"
 });
 
 Vue.config.productionTip = false;

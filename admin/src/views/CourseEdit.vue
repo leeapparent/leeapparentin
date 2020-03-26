@@ -1,10 +1,14 @@
 <template>
   <avue-crud
     :data="data.data"
+    :page="page"
     :option="option"
     @row-save="save"
     @row-update="update"
     @row-del="remove"
+    @on-load="change"
+    @sort-change="sortChange"
+    @search-change="search"
   ></avue-crud>
 </template>
 
@@ -14,16 +18,54 @@ import { Vue, Component } from "vue-property-decorator";
 export default class CourseEdit extends Vue {
   data = {};
   option = {};
+  query = {
+    limit: 10
+  };
+  page = {
+    pageSize: 2,
+    pageSizes: [2, 5, 10],
+    total: 0
+  };
   async fetchOptio() {
     const res = await this.$http.get("courses/option");
     this.option = res.data;
   }
 
+  async change({ pageSize, currentPage }) {
+    this.query.page = currentPage;
+    this.query.limit = pageSize;
+    this.fetch();
+  }
   async fetch() {
-    const res = await this.$http.get("courses");
+    const res = await this.$http.get("courses", {
+      params: {
+        query: this.query
+      }
+    });
     this.data = res.data;
+    this.page.total = res.data.total;
+  }
+  async sortChange({ prop, order }) {
+    if (order) {
+      this.query.sort = null;
+    } else {
+      this.query.sort = {
+        [prop]: order === "ascending" ? 1 : -1
+      };
+    }
+    this.fetch();
   }
 
+  async search(where) {
+    for (let k in where) {
+      const fidld = this.option.column.find(v => v.prop === k);
+      if (fidld.regex) {
+        where[k] = { $regex: where[k] };
+      }
+    }
+    this.query.where = where;
+    this.fetch();
+  }
   async save(row, done) {
     await this.$http.post("courses", row);
     this.$message.success("成功");

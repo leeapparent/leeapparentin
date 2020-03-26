@@ -16,8 +16,8 @@
             <template slot="title">{{ item.title }}</template>
             <el-menu-item
               v-for="(subItem, subIndex) in item.items"
-              :index="subItem.path"
               :key="`menu-item-${index}-${subIndex}`"
+              :index="subItem.path"
             >
               {{ subItem.title }}
             </el-menu-item>
@@ -25,12 +25,11 @@
         </el-menu>
       </el-aside>
       <el-container>
-        <el-header height="">
+        <el-header>
           <h3>后台管理页面</h3>
-          <!-- Header content -->
         </el-header>
         <el-main>
-          <router-view></router-view>
+          <router-view :key="$route.path"></router-view>
         </el-main>
       </el-container>
     </el-container>
