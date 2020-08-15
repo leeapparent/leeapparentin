@@ -25,8 +25,9 @@ export class CoursesController {
           sortable: true,
           search: true,
           regex: true,
+          row:true
         },
-        { prop: 'cover', label: '课时封面图' },
+        { prop: 'imgUrl', label: '课时封面',type: 'upload', width: 120, listType: 'picture-img', row: true, action: 'upload'listType:'picture-img',action:'upload', tip: '只能上传jpg/png用户头像，且不超过500kb', },
       ],
     };
   }

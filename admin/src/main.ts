@@ -4,12 +4,13 @@ import "./plugins/element";
 import "./plugins/avue";
 import router from "./router";
 import axios from "axios";
-Vue.prototype.$http = axios.create({
+const http = axios.create({
   baseURL: "http://localhost:3002"
 });
 
 Vue.config.productionTip = false;
-
+Vue.prototype.$http = http
+Vue.prototype.$httpajax = http
 new Vue({
   router,
   render: h => h(App)

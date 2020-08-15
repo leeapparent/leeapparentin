@@ -18,7 +18,17 @@ export class EpisodesController {
   option() {
     return {
       title: '表格的标题',
-      column: [{ prop: 'name', label: '课程名称' }],
+      column: [
+        {
+          prop: 'name',
+          label: '课程名称',
+          sortable: true,
+          search: true,
+          regex: true,
+          row:true
+        },
+        { prop: 'imgUrl', label: '课时封面',type: 'upload', width: 120, listType: 'picture-img', row: true, action: 'upload'listType:'picture-img',action:'upload', tip: '只能上传jpg/png用户头像，且不超过500kb', },
+      ],
     };
   }
 }

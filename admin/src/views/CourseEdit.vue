@@ -22,7 +22,7 @@ export default class CourseEdit extends Vue {
     limit: 10
   };
   page = {
-    pageSize: 2,
+    pageSize: 5,
     pageSizes: [2, 5, 10],
     total: 0
   };
